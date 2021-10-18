@@ -21,8 +21,8 @@ public class Main {
 		System.out.println( persona.toString() + "\n");
 		
 		System.out.println("Patrón Singleton. Voy a crear una nueva instancia: ");
-		persona = PersonaSingleton.instancePersonaSingleton("personaSingleton", "12345678Z", 20); 
-		System.out.println( persona.toString() );
+		PersonaSingleton persona2 = PersonaSingleton.instancePersonaSingleton("persona2", "98461234A", 26); 
+		System.out.println( persona2.toString() );
 
 	}
 
