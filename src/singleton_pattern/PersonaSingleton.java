@@ -11,12 +11,15 @@ public class PersonaSingleton {
 		this.nombre = nombre;
 		this.dni = dni;
 		this.edad = edad;
+		System.out.println("Creando una instancia nueva de " + nombre + " " + dni );
 	}
 	
 	public static PersonaSingleton instancePersonaSingleton(String nombre, String dni, int edad) {
 		if (instanciaPersona == null) 
 			instanciaPersona = new PersonaSingleton(nombre, dni, edad);
 
+		else System.out.println( "Esta instancia ya fue creada: " + instanciaPersona.toString() );
+		
 		return instanciaPersona;
 	}
 
