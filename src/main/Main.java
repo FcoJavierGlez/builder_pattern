@@ -4,6 +4,7 @@ import builder_pattern.Usuario;
 import builder_pattern.UsuarioBuilder;
 import prototype_pattern.Automovil;
 import prototype_pattern.Coche;
+import retry_pattern.RetryPattern;
 import singleton_pattern.PersonaSingleton;
 
 public class Main {
@@ -46,6 +47,20 @@ public class Main {
 		System.out.println( "Coche1: " + coche1.toString() );
 		System.out.println( "Coche2: " + coche2.toString() );
 		System.out.println( "Coche3: " + coche3.toString() + "\n" );
+		
+		
+		//retry pattern
+		RetryPattern retry1 = new RetryPattern(5, 3);
+		RetryPattern retry2 = retry1.clone();
+		
+		retry2.setIntentosRealizar(7);
+		
+		retry1.connect();
+		retry2.connect();
+		
+		
+		//circuitBreaker pattern
+		
 	}
 
 }
