@@ -24,7 +24,6 @@ public class CircuitBreaker {
 	}
 	
 	public void connect () throws Exception {
-		//this.setDisabled();
 		if ( this.disabled ) return;
 		if ( this.nivelDeFallos >= this.maxNivelFallos ) throw new Exception("La conexión de " + this.nombre + " está completamente dañada y no se podrá iniciar.");
 		if ( this.nivelDeFallos > 0 && !this.forcedOpen ) {
@@ -87,10 +86,6 @@ public class CircuitBreaker {
 	public void setDisabled(boolean disabled) {
 		this.disabled = disabled;
 	}
-	
-//	public void setDisabled() {
-//		this.disabled = this.nivelDeFallos >= this.maxNivelFallos;
-//	}
 
 	public boolean isForcedOpen() {
 		return forcedOpen;
