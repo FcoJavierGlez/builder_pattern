@@ -1,5 +1,10 @@
 package builder_pattern;
 
+/**
+ * 
+ * @author Francisco Javier González Sabariego
+ *
+ */
 public class UsuarioBuilder {
 
 

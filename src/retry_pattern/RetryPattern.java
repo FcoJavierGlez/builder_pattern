@@ -1,5 +1,10 @@
 package retry_pattern;
 
+/**
+ * 
+ * @author Francisco Javier González Sabariego
+ *
+ */
 public class RetryPattern {
 	
 	private int maxIntentosPermitidos;
@@ -26,11 +31,11 @@ public class RetryPattern {
 		
 		if ( this.conexionesIntentadas == this.intentosRealizar ) {
 			this.conexionExitosa = true;
-			System.out.println("Conexión realizada!!!");
+			System.out.println("Conexión realizada!!! \n");
 		} 
 		else if ( this.conexionesIntentadas >= this.maxIntentosPermitidos ) {
 			this.conexionFallida = true;
-			System.out.println("Has superado el límite de conexiones :(");
+			System.out.println("Has superado el límite de conexiones :( \n");
 		}
 		
 	}

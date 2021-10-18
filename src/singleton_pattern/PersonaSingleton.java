@@ -1,5 +1,10 @@
 package singleton_pattern;
 
+/**
+ * 
+ * @author Francisco Javier González Sabariego
+ *
+ */
 public class PersonaSingleton {
 	
 	private String nombre;

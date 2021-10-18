@@ -1,5 +1,10 @@
 package prototype_pattern;
 
+/**
+ * 
+ * @author Francisco Javier González Sabariego
+ *
+ */
 public class Coche extends Automovil {
 	
 	public Coche( String marca, String modelo, String matricula, String color ) {

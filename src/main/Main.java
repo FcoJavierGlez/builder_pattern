@@ -2,11 +2,18 @@ package main;
 
 import builder_pattern.Usuario;
 import builder_pattern.UsuarioBuilder;
+import circuit_breaker_pattern.CircuitBreaker;
 import prototype_pattern.Automovil;
 import prototype_pattern.Coche;
 import retry_pattern.RetryPattern;
 import singleton_pattern.PersonaSingleton;
 
+
+/**
+ * 
+ * @author Francisco Javier González Sabariego
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
@@ -50,13 +57,15 @@ public class Main {
 		
 		
 		//retry pattern
-		RetryPattern retry1 = new RetryPattern(5, 3);
+		System.out.println("Patrón retry:");
+		RetryPattern retry1 = new RetryPattern(5, 3); //número máximo de intentos 5, intentos fallidos 3
 		RetryPattern retry2 = retry1.clone();
 		
-		retry2.setIntentosRealizar(7);
+		retry2.setIntentosRealizar(7); //número máximo de intentos 5, intentos fallidos 7
 		
 		do {
 			retry1.connect();
+			
 			try{
 		        Thread.sleep(1000);
 	        } catch (Exception e) {}
@@ -65,6 +74,7 @@ public class Main {
 		
 		do {
 			retry2.connect();
+			
 			try{
 		        Thread.sleep(1000);
 	        } catch (Exception e) {}
@@ -73,6 +83,45 @@ public class Main {
 		
 		
 		//circuitBreaker pattern
+		System.out.println("Patrón circuitBreaker: ");
+		
+		CircuitBreaker conn1 = new CircuitBreaker( "conn1", 0, 10 );
+		
+		CircuitBreaker conn2 = conn1.clone();
+		conn2.setNivelDeFallos(4);
+		conn2.setNombre("conn2");
+		
+		
+		CircuitBreaker conn3 = conn1.clone();
+		conn3.setNivelDeFallos(12);
+		conn3.setNombre("conn3");
+		
+		//Inicio la conexión 1 que no tiene errores
+		try {
+			conn1.connect();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		//Inicio la conexión 2 que está parcialmente dañada y requiere activar el sistema forzado
+		try {
+			conn2.connect();
+			System.out.println("Forzamos el arranque de conn2.");
+			conn2.setForcedOpen(true);
+			conn2.connect();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		//Inicio la conexión 3 que está totalmente dañada y será imposible iniciar
+		try {
+			conn3.connect();
+			System.out.println("Forzamos el arranque de conn3.");
+			conn3.setForcedOpen(true);
+			conn3.connect();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 

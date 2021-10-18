@@ -1,5 +1,10 @@
 package prototype_pattern;
 
+/**
+ * 
+ * @author Francisco Javier González Sabariego
+ *
+ */
 public abstract class Automovil {
 	
 	protected String tipoDeVehiculo;
