@@ -4,33 +4,34 @@ public class RetryPattern {
 	
 	private int maxIntentosPermitidos;
 	private int intentosRealizar;
+	private int conexionesIntentadas;
+	private Boolean conexionExitosa;
+	private Boolean conexionFallida;
 	
 	public RetryPattern( int maxIntentos, int intentos ) {
 		this.maxIntentosPermitidos = maxIntentos;
 		this.intentosRealizar = intentos;
+		this.conexionesIntentadas = 0;
+		this.conexionExitosa = false;
+		this.conexionFallida = false;
 	}
 	
 	public void connect() {
 		
-		int conexionesIntentadas = 0;
+		if ( this.conexionExitosa ) { return; }
 		
-		do {
+		if ( this.conexionFallida ) { return; }
 		
-			try{
-		        Thread.sleep(1000);
-		      } catch (Exception e){}
-			
-			System.out.println("Intento de conexión: " + ++conexionesIntentadas);
-			
-			if (conexionesIntentadas == intentosRealizar) {
-				System.out.println("Conexión realizada!!!");
-				return;
-			} else if ( conexionesIntentadas >= maxIntentosPermitidos ) {
-				System.out.println("Has superado el límite de conexiones :(");
-				return;
-			}
-			
-		} while ( conexionesIntentadas < intentosRealizar || conexionesIntentadas < maxIntentosPermitidos );
+		System.out.println("Intento de conexión: " + ++this.conexionesIntentadas);
+		
+		if ( this.conexionesIntentadas == this.intentosRealizar ) {
+			this.conexionExitosa = true;
+			System.out.println("Conexión realizada!!!");
+		} 
+		else if ( this.conexionesIntentadas >= this.maxIntentosPermitidos ) {
+			this.conexionFallida = true;
+			System.out.println("Has superado el límite de conexiones :(");
+		}
 		
 	}
 	
@@ -52,6 +53,30 @@ public class RetryPattern {
 
 	public void setIntentosRealizar(int intentosRealizar) {
 		this.intentosRealizar = intentosRealizar;
+	}
+
+	public int getConexionesIntentadas() {
+		return conexionesIntentadas;
+	}
+
+	public void setConexionesIntentadas(int conexionesIntentadas) {
+		this.conexionesIntentadas = conexionesIntentadas;
+	}
+
+	public Boolean getConexionExitosa() {
+		return conexionExitosa;
+	}
+
+	public void setConexionExitosa(Boolean conexionExitosa) {
+		this.conexionExitosa = conexionExitosa;
+	}
+
+	public Boolean getConexionFallida() {
+		return conexionFallida;
+	}
+
+	public void setConexionFallida(Boolean conexionFallida) {
+		this.conexionFallida = conexionFallida;
 	}
 	
 

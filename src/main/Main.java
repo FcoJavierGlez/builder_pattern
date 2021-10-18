@@ -55,8 +55,21 @@ public class Main {
 		
 		retry2.setIntentosRealizar(7);
 		
-		retry1.connect();
-		retry2.connect();
+		do {
+			retry1.connect();
+			try{
+		        Thread.sleep(1000);
+	        } catch (Exception e) {}
+			
+		} while ( !( retry1.getConexionExitosa() || retry1.getConexionFallida() ) );
+		
+		do {
+			retry2.connect();
+			try{
+		        Thread.sleep(1000);
+	        } catch (Exception e) {}
+			
+		} while ( !( retry2.getConexionExitosa() || retry2.getConexionFallida() ) );
 		
 		
 		//circuitBreaker pattern
