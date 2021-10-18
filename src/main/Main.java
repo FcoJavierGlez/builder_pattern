@@ -23,7 +23,7 @@ public class Main {
 		
 		System.out.println("Patrón Singleton. Voy a crear una nueva instancia: ");
 		PersonaSingleton persona2 = PersonaSingleton.instancePersonaSingleton("persona2", "98461234A", 26); 
-		System.out.println( persona2.toString() );
+		System.out.println( persona2.toString() + "\n" );
 		
 		
 		//prototype pattern
@@ -45,7 +45,7 @@ public class Main {
 		System.out.println("Muestro los 3 coches:");
 		System.out.println( "Coche1: " + coche1.toString() );
 		System.out.println( "Coche2: " + coche2.toString() );
-		System.out.println( "Coche3: " + coche3.toString() );
+		System.out.println( "Coche3: " + coche3.toString() + "\n" );
 	}
 
 }
